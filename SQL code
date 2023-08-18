@@ -1,0 +1,203 @@
+#  SQL code for analysis of the data within the dataset
+# HERE SIMPLE SQL COMMANDS ARE INITIATED FOR THE OBSERVATION AND ANALYSIS OF THE DATASET
+
+# displaying the entire dataset 
+SELECT * 
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+LIMIT 100;
+
+
+# displaying the total count of the entire dataset 
+SELECT Count(1) 
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+LIMIT 150;
+
+
+# displaying  regular food cunsumption variation
+SELECT  regular_food_type
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+ 
+
+# displaying the total count of  outside food consumption regularly 
+SELECT count (regular_food_type)
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where regular_food_type = 'OUTSIDE';
+
+
+# displaying  solid food type 
+SELECT   _food_type
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where _food_type ='SOLID';
+ 
+ 
+# displaying  count of solid food type 
+SELECT   count(_food_type)
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where _food_type ='SOLID'; 
+ 
+
+# displaying   liquid food type
+SELECT  _food_type
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where _food_type ='LIQUID';
+ 
+ 
+# displaying  count of liquid food type 
+SELECT   count(_food_type)
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where _food_type ='LIQUID';
+ 
+ 
+# displaying  both solid anad liquid food type
+SELECT  _food_type
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where _food_type ='BOTH';
+ 
+ 
+# displaying  count of Both food type which includes solid and liquid
+SELECT   count(_food_type)
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where _food_type ='BOTH';
+ 
+
+# Number of individuals suffering from constipation
+SELECT  *
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where constipation='Yes';
+
+ 
+# count of total constipation
+SELECT count (constipation)
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where  constipation = 'Yes';
+
+
+# count of total addiction
+SELECT count (addiction)
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where   addiction = 'Yes';
+
+
+# count of total  individuals suffering from deprived energy or from sleepiness
+SELECT count (_less_energy_or_sleepy)
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where _less_energy_or_sleepy = 'Yes';
+
+
+# count of total  individuals suffering from  mood swings due to fast food
+SELECT count (MoodSwings)
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where  MoodSwings = 'Yes';
+
+
+# extracting the main colums 
+SELECT  regular_food_type ,
+constipation, 
+addiction, 
+MoodSwings, 
+_less_energy_or_sleepy
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` ;
+
+
+# extracting details of individuals who suffer from constipation, addiction,moodswings and less energy all symptomns from eating outside regularly
+SELECT  regular_food_type , 
+constipation, 
+addiction, 
+MoodSwings, 
+_less_energy_or_sleepy
+FROM `qwiklabs-gcp-04-9dbfb05346d7.HEALTH_CUDDLE_2.HEALTH_CUDDLE_2` 
+where  regular_food_type='OUTSIDE'
+AND constipation='Yes' 
+and addiction='Yes'
+and MoodSwings='Yes'
+and _less_energy_or_sleepy='Yes';
+
+
+# extracting details of individuals who suffer from constipation, addiction,moodswings and less energy all symptomns from eating both food type regularly
+SELECT  (regular_food_type , 
+constipation,
+addiction, 
+MoodSwings, 
+_less_energy_or_sleepy)
+FROM   `qwiklabs-gcp-03-5884439c6d4f.health_cuddle.health_cuddle`
+where  regular_food_type='BOTH'
+AND constipation='Yes' 
+and addiction='Yes'
+and MoodSwings='Yes'
+and _less_energy_or_sleepy='Yes';
+
+
+# extracting details of individuals who suffer from constipation, addiction,moodswings and less energy all symptomns from eating HOMEMADE food type regularly
+SELECT  (regular_food_type , 
+constipation,addiction, 
+MoodSwings, 
+_less_energy_or_sleepy)
+FROM   `qwiklabs-gcp-03-5884439c6d4f.health_cuddle.health_cuddle`
+where  regular_food_type='HOME-MADE'
+AND constipation='Yes' 
+and addiction='Yes'
+and MoodSwings='Yes'
+and _less_energy_or_sleepy='Yes';
+
+
+SELECT  (regular_food_type , 
+constipation,
+addiction, 
+MoodSwings, 
+_less_energy_or_sleepy)
+FROM   `qwiklabs-gcp-03-5884439c6d4f.health_cuddle.health_cuddle`
+where  regular_food_type='OUTSIDE'
+AND constipation='Yes';
+
+
+SELECT  (regular_food_type , 
+constipation,addiction, 
+MoodSwings, 
+_less_energy_or_sleepy)
+FROM   `qwiklabs-gcp-03-5884439c6d4f.health_cuddle.health_cuddle`
+where  regular_food_type='OUTSIDE'
+and addiction='Yes';
+
+
+SELECT  (regular_food_type , 
+constipation,
+addiction, 
+MoodSwings, 
+_less_energy_or_sleepy)
+FROM   `qwiklabs-gcp-03-5884439c6d4f.health_cuddle.health_cuddle`
+where  regular_food_type='OUTSIDE'
+and MoodSwings='Yes';
+
+
+SELECT  (regular_food_type , 
+constipation,
+addiction, 
+MoodSwings, 
+_less_energy_or_sleepy)
+FROM   `qwiklabs-gcp-03-5884439c6d4f.health_cuddle.health_cuddle`
+where  regular_food_type='OUTSIDE'
+and _less_energy_or_sleepy='Yes';
+
+
+# Top 10 individuals who eat outside regularly more than 5 times 
+SELECT  *
+FROM   `qwiklabs-gcp-03-5884439c6d4f.health_cuddle.health_cuddle`
+where  regular_food_type='OUTSIDE'
+and Number_of_outside_food_per_month > 5
+order by  Number_of_outside_food_per_month
+limit 10;
+
+
+# display max eaters outside 
+SELECT  *
+FROM   `qwiklabs-gcp-03-5884439c6d4f.health_cuddle.health_cuddle`
+where Number_of_outside_food_per_month > 8;
+ 
+
+# Various reasons fo people consuming fast food regularly
+SELECT  _reason,
+FROM   `qwiklabs-gcp-03-5884439c6d4f.health_cuddle.health_cuddle`
+# or
+SELECT  *
+FROM   `qwiklabs-gcp-03-5884439c6d4f.health_cuddle.health_cuddle`
+order by _reason;
